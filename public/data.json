@@ -1,0 +1,98 @@
+[
+  {
+    "skillId": 2,
+    "skillName": "Advanced JavaScript Bootcamp",
+    "providerName": "Sadia Rahman",
+    "providerEmail": "sadia.rahman@skillswap.com",
+    "price": 50,
+    "rating": 4.8,
+    "slotsAvailable": 5,
+    "description": "A comprehensive 6-week course on modern JavaScript, including ES6+, asynchronous programming, DOM manipulation, and advanced concepts for web development.",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Unofficial_JavaScript_logo_2.svg/1200px-Unofficial_JavaScript_logo_2.svg.png",
+    "category": "Technology"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Creative Graphic Design Essentials",
+    "providerName": "Tariq Hasan",
+    "providerEmail": "tariq.hasan@skillswap.com",
+    "price": 40,
+    "rating": 4.7,
+    "slotsAvailable": 6,
+    "description": "Learn the fundamentals of graphic design including color theory, typography, layout design, and Adobe Photoshop & Illustrator basics. Perfect for aspiring designers.",
+    "image": "https://www.alrahaprint.com/wp-content/uploads/2024/07/graphic-design.jpg",
+    "category": "Design"
+  },
+  {
+    "skillId": 1,
+    "skillName": "Beginner Python Coding Workshop",
+    "providerName": "Raihan Kabir",
+    "providerEmail": "raihan.kabir@skillswap.com",
+    "price": 35,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "An intensive 4-week workshop covering Python basics, variables, loops, and functions. Ideal for absolute beginners interested in software.",
+    "image": "https://verpex.com/assets/uploads/images/blog/Python-good-for-machine-learning.webp?v=1681274267",
+    "category": "Technology"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Intermediate Yoga Flow",
+    "providerName": "Priya Sharma",
+    "providerEmail": "priya.sharma@skillswap.com",
+    "price": 15,
+    "rating": 4.7,
+    "slotsAvailable": 8,
+    "description": "Vinyasa flow sessions focusing on strength, flexibility, and proper alignment for intermediate practitioners.",
+    "image": "https://images.pexels.com/photos/4056723/pexels-photo-4056723.jpeg?auto=compress&cs=tinysrgb&w=800",
+    "category": "Wellness"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Professional Resume Writing & Review",
+    "providerName": "Mark Olsen",
+    "providerEmail": "mark.olsen@skillswap.com",
+    "price": 50,
+    "rating": 4.5,
+    "slotsAvailable": 2,
+    "description": "One-on-one session to build a high-impact, ATS-friendly resume and cover letter tailored to your career goals.",
+    "image": "https://images.ctfassets.net/pdf29us7flmy/3nfnQRZNI7ByD0tkCo2fl2/c3b7b70d7527edc51dde14d078cf6d15/Resume_format.jpg",
+    "category": "Career"
+  },
+  {
+    "skillId": 4,
+    "skillName": "French Language Conversation Exchange (B1/B2)",
+    "providerName": "Camille Dupont",
+    "providerEmail": "camille.dupont@skillswap.com",
+    "price": 12,
+    "rating": 4.8,
+    "slotsAvailable": 6,
+    "description": "Informal and fun sessions to practice intermediate-level French speaking and listening skills with a native speaker.",
+    "image": "https://img.freepik.com/free-vector/people-speaking-different-languages_23-2147866911.jpg?semt=ais_hybrid&w=740&q=80",
+    "category": "Language"
+  },
+  {
+    "skillId": 5,
+    "skillName": "Basic Digital Photography (Smartphone)",
+    "providerName": "Jamal Uddin",
+    "providerEmail": "jamal.uddin@skillswap.com",
+    "price": 25,
+    "rating": 4.9,
+    "slotsAvailable": 3,
+    "description": "Learn composition, lighting, and editing tricks to take stunning, professional-looking photos using only your smartphone.",
+    "image": "https://images.squarespace-cdn.com/content/v1/675176954189cc3a0d973e74/1733392342900-B9KMX42HRBDR5N187AVT/Picture+of+woodlands+taken+on+iphone+using+natural+light",
+    "category": "Creative"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Intro to Home Gardening & Plant Care",
+    "providerName": "Lisa Chen",
+    "providerEmail": "lisa.chen@skillswap.com",
+    "price": 18,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "A practical guide to starting a small home garden. Covers soil preparation, basic watering techniques, and pest control.",
+    "image": "https://www.gardenia.net/wp-content/uploads/2023/02/shutterstock_627274796Optimized.jpg",
+    "category": "Lifestyle"
+  }
+]
