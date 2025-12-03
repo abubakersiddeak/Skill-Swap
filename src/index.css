@@ -2,10 +2,118 @@
 @plugin "daisyui" {
   themes: light --default;
 }
-.bg-custom-wave {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='1000' preserveAspectRatio='none' viewBox='0 0 1440 1000'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1501%26quot%3b)' fill='none'%3e%3crect width='1440' height='1000' x='0' y='0' fill='rgba(236%2c 245%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M 0%2c67 C 96%2c103.2 288%2c231.6 480%2c248 C 672%2c264.4 768%2c137.8 960%2c149 C 1152%2c160.2 1344%2c273 1440%2c304L1440 1000L0 1000z' fill='rgba(167%2c 215%2c 253%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c397 C 32%2c421.4 96%2c525.8 160%2c519 C 224%2c512.2 256%2c339.4 320%2c363 C 384%2c386.6 416%2c633.6 480%2c637 C 544%2c640.4 576%2c382.6 640%2c380 C 704%2c377.4 736%2c620.2 800%2c624 C 864%2c627.8 896%2c407.8 960%2c399 C 1024%2c390.2 1056%2c580.4 1120%2c580 C 1184%2c579.6 1216%2c385.8 1280%2c397 C 1344%2c408.2 1408%2c588.2 1440%2c636L1440 1000L0 1000z' fill='rgba(201%2c 219%2c 242%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c752 C 32%2c787.2 96%2c928 160%2c928 C 224%2c928 256%2c746.4 320%2c752 C 384%2c757.6 416%2c967.2 480%2c956 C 544%2c944.8 576%2c693.4 640%2c696 C 704%2c698.6 736%2c953.8 800%2c969 C 864%2c984.2 896%2c784 960%2c772 C 1024%2c760 1056%2c927.8 1120%2c909 C 1184%2c890.2 1216%2c672.6 1280%2c678 C 1344%2c683.4 1408%2c884.4 1440%2c936L1440 1000L0 1000z' fill='rgba(174%2c 191%2c 209%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1501'%3e%3crect width='1440' height='1000' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+
+/* Primary color scale */
+:root {
+  --primary-50: #f0f9ff;
+  --primary-100: #e0f2fe;
+  --primary-200: #bae6fd;
+  --primary-300: #7dd3fc;
+  --primary-400: #38bdf8;
+  --primary-500: #0ea5e9;
+  --primary-600: #0284c7; /* Main primary color */
+  --primary-700: #0369a1;
+  --primary-800: #075985;
+  --primary-900: #0c4a6e;
+}
+
+/* Text color classes */
+.text-primary-50 {
+  color: var(--primary-50);
+}
+.text-primary-100 {
+  color: var(--primary-100);
+}
+.text-primary-200 {
+  color: var(--primary-200);
+}
+.text-primary-300 {
+  color: var(--primary-300);
+}
+.text-primary-400 {
+  color: var(--primary-400);
+}
+.text-primary-500 {
+  color: var(--primary-500);
+}
+.text-primary-600 {
+  color: var(--primary-600);
+}
+.text-primary-700 {
+  color: var(--primary-700);
+}
+.text-primary-800 {
+  color: var(--primary-800);
+}
+.text-primary-900 {
+  color: var(--primary-900);
+}
+
+/* Background color classes */
+.bg-primary-50 {
+  background-color: var(--primary-50);
+}
+.bg-primary-100 {
+  background-color: var(--primary-100);
+}
+.bg-primary-200 {
+  background-color: var(--primary-200);
+}
+.bg-primary-300 {
+  background-color: var(--primary-300);
+}
+.bg-primary-400 {
+  background-color: var(--primary-400);
+}
+.bg-primary-500 {
+  background-color: var(--primary-500);
+}
+.bg-primary-600 {
+  background-color: var(--primary-600);
+}
+.bg-primary-700 {
+  background-color: var(--primary-700);
+}
+.bg-primary-800 {
+  background-color: var(--primary-800);
+}
+.bg-primary-900 {
+  background-color: var(--primary-900);
+}
+
+/* Border color classes */
+.border-primary-50 {
+  border-color: var(--primary-50);
+}
+.border-primary-100 {
+  border-color: var(--primary-100);
+}
+.border-primary-200 {
+  border-color: var(--primary-200);
+}
+.border-primary-300 {
+  border-color: var(--primary-300);
+}
+.border-primary-400 {
+  border-color: var(--primary-400);
+}
+.border-primary-500 {
+  border-color: var(--primary-500);
+}
+.border-primary-600 {
+  border-color: var(--primary-600);
+}
+.border-primary-700 {
+  border-color: var(--primary-700);
+}
+.border-primary-800 {
+  border-color: var(--primary-800);
+}
+.border-primary-900 {
+  border-color: var(--primary-900);
+}
+.max-width {
+  max-width: 1800px;
+  width: 95%;
+  margin: 0 auto;
 }

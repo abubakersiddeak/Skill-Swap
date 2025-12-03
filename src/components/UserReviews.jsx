@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Star, Quote, ChevronLeft, ChevronRight } from "lucide-react";
 import "animate.css";
 
 const reviews = [
@@ -41,13 +42,16 @@ const reviews = [
 
 export default function UserReviews() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
 
+  // Auto-slide logic
   useEffect(() => {
+    if (isPaused) return;
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % reviews.length);
+      nextSlide();
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [currentIndex, isPaused]);
 
   const prevSlide = () => {
     setCurrentIndex((prev) => (prev - 1 + reviews.length) % reviews.length);
@@ -69,70 +73,119 @@ export default function UserReviews() {
   const visibleReviews = getVisibleReviews();
 
   return (
-    <section className="py-16 rounded-2xl  text-gray-800">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-10 animate__animated animate__fadeInDown">
-          User Reviews
-        </h2>
+    <section className="py-4 relative">
+      <div className="max-width">
+        {/* Section Header - Matched to TopRatedProviders */}
+        <div className="text-center  mx-auto mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
+            User Reviews
+          </h2>
+          <p className="text-primary-700 text-lg">
+            See what our satisfied clients have to say about their experiences
+            with our top-rated experts.
+          </p>
+        </div>
 
-        <div className="relative overflow-hidden">
-          <div className="flex gap-6 justify-center">
+        <div
+          className="relative max-w-6xl mx-auto px-4 md:px-0"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          {/* Cards Container */}
+          <div className="flex justify-center gap-6 xl:gap-8">
             {visibleReviews.map((review, index) => (
               <div
-                key={review.id}
-                className={`bg-white p-6 rounded-xl shadow-xl text-center w-72 md:w-80 transform transition-transform duration-700 ease-in-out animate__animated animate__fadeInUp`}
-                style={{
-                  animationDelay: `${index * 0.2}s`,
-                  zIndex: visibleReviews.length - index,
-                }}
+                key={`${review.id}-${index}`}
+                className={`
+                  group relative bg-white/80 backdrop-blur-md 
+                  border border-primary-100 rounded-2xl shadow-sm 
+                  hover:shadow-xl hover:shadow-primary-500/10 
+                  hover:border-primary-300
+                  transition-all duration-500 ease-out 
+                  flex flex-col flex-1 overflow-hidden
+                  /* Responsive Visibility Logic: */
+                  ${index === 0 ? "block w-full" : "hidden md:block"} 
+                  ${index === 2 ? "hidden lg:block" : ""}
+                `}
               >
-                <img
-                  src={review.avatar}
-                  alt={review.name}
-                  className="w-20 h-20 rounded-full mx-auto mb-4 border-2 border-blue-400 shadow-lg"
-                />
-                <h3 className="text-xl font-semibold mb-2 text-blue-500">
-                  {review.name}
-                </h3>
-                <div className="flex justify-center mb-4">
-                  {Array.from({ length: review.rating }).map((_, i) => (
-                    <svg
-                      key={i}
-                      className="w-5 h-5 text-yellow-400"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.965a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.37 2.448a1 1 0 00-.364 1.118l1.287 3.965c.3.922-.755 1.688-1.538 1.118l-3.37-2.447a1 1 0 00-1.176 0l-3.37 2.447c-.783.57-1.838-.196-1.538-1.118l1.287-3.965a1 1 0 00-.364-1.118L2.068 9.392c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.965z" />
-                    </svg>
-                  ))}
+                {/* Decorative linear background inside card */}
+                <div className="absolute top-0 w-full h-24 bg-linear-to-b from-primary-50 to-transparent opacity-50"></div>
+
+                <div className="relative p-6 flex flex-col items-center grow z-10">
+                  {/* Quote Icon Decoration */}
+                  <div className="mb-2 text-primary-200">
+                    <Quote className="w-8 h-8 fill-current opacity-50" />
+                  </div>
+
+                  {/* Avatar Container */}
+                  <div className="relative mb-4">
+                    <div className="p-1 bg-white rounded-full shadow-sm">
+                      <img
+                        src={review.avatar}
+                        alt={review.name}
+                        className="w-20 h-20 rounded-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors text-center">
+                    {review.name}
+                  </h3>
+
+                  {/* Star Ratings - Matched Style */}
+                  <div className="flex items-center gap-1 my-3 bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
+                    {Array.from({ length: 5 }).map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`w-4 h-4 ${
+                          i < review.rating
+                            ? "text-orange-400 fill-orange-400"
+                            : "text-gray-300"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Message */}
+                  <p className="text-gray-600 italic text-center leading-relaxed">
+                    "{review.message}"
+                  </p>
                 </div>
-                <p className="text-gray-600">{review.message}</p>
               </div>
             ))}
           </div>
 
+          {/* Navigation Buttons - Styled to match theme */}
           <button
             onClick={prevSlide}
-            className="z-50 cursor-pointer  absolute top-1/2 left-0 -translate-y-1/2 bg-blue-500 text-white p-3 rounded-full shadow hover:bg-blue-600 transition"
+            aria-label="Previous Review"
+            className="absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 bg-white text-primary-600 p-3 rounded-full shadow-lg hover:bg-primary-50 hover:scale-110 transition z-20 border border-primary-100 group"
           >
-            &#8592;
+            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
           </button>
           <button
             onClick={nextSlide}
-            className="z-50 cursor-pointer absolute top-1/2 right-0 -translate-y-1/2 bg-blue-500 text-white p-3 rounded-full shadow hover:bg-blue-600 transition"
+            aria-label="Next Review"
+            className="absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 bg-white text-primary-600 p-3 rounded-full shadow-lg hover:bg-primary-50 hover:scale-110 transition z-20 border border-primary-100 group"
           >
-            &#8594;
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
-        <div className="flex justify-center mt-6 gap-2">
+        {/* Pagination Dots */}
+        <div className="flex justify-center mt-8 gap-2">
           {reviews.map((_, idx) => (
-            <span
+            <button
               key={idx}
-              className={`w-3 h-3 rounded-full ${
-                idx === currentIndex ? "bg-blue-500" : "bg-gray-300"
-              } transition-all`}
-            ></span>
+              onClick={() => setCurrentIndex(idx)}
+              aria-label={`Go to review ${idx + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                idx === currentIndex
+                  ? "w-8 bg-primary-600"
+                  : "w-2.5 bg-primary-200 hover:bg-primary-400"
+              }`}
+            />
           ))}
         </div>
       </div>

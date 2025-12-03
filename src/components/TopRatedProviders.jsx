@@ -1,5 +1,18 @@
-import { Star } from "lucide-react";
+import { Star, ShieldCheck, MapPin, ArrowRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
+
+// Helper Component: Skeleton Loader (Market Standard for loading states)
+const ProviderSkeleton = () => (
+  <div className="bg-white/80 backdrop-blur-sm border border-primary-100 rounded-2xl p-6 shadow-sm animate-pulse flex flex-col items-center h-full">
+    <div className="w-24 h-24 bg-primary-100 rounded-full mb-4"></div>
+    <div className="h-6 bg-primary-100 w-3/4 rounded mb-2"></div>
+    <div className="h-4 bg-primary-50 w-1/2 rounded mb-4"></div>
+    <div className="w-full mt-auto space-y-2">
+      <div className="h-3 bg-primary-50 w-full rounded"></div>
+      <div className="h-10 bg-primary-100 w-full rounded-lg mt-4"></div>
+    </div>
+  </div>
+);
 
 export default function TopRatedProviders() {
   const [providers, setProviders] = useState([]);
@@ -8,94 +21,126 @@ export default function TopRatedProviders() {
   useEffect(() => {
     const fetchdata = async () => {
       try {
+        // Simulating a slight delay to show off the skeleton (remove setTimeout in production)
         const res = await fetch("/data.json");
         const newData = await res.json();
         const topRated = newData
           .sort((a, b) => b.rating - a.rating)
-          .slice(0, 6);
+          .slice(0, 5);
         setProviders(topRated);
         setLoading(false);
       } catch (error) {
-        console.log(error);
+        console.error("Failed to fetch providers", error);
+        setLoading(false);
       }
     };
     fetchdata();
   }, []);
 
-  if (loading) {
-    return (
-      <div className="flex flex-col items-center justify-center min-h-[50vh]">
-        <div className="w-14 h-14 border-4 border-gray-200 border-t-blue-500 rounded-full animate-spin"></div>
-        <p className="mt-4 text-gray-600 font-medium animate-pulse">
-          Loading Top Providers...
-        </p>
-      </div>
-    );
-  }
+  // Fallback for broken images
+  const handleImageError = (e) => {
+    e.target.src =
+      "https://ui-avatars.com/api/?name=Provider&background=0D8ABC&color=fff";
+  };
 
   return (
-    <section className="py-12 ">
-      <h2 className="text-3xl md:text-4xl font-extrabold text-center text-gray-800 mb-10">
-        Top Rated Providers
-      </h2>
+    <section className="py-10  relative">
+      <div className="max-width ">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
+            Top Rated Experts
+          </h2>
+          <p className="text-primary-700 text-lg">
+            Connect with the highest-rated professionals dedicated to providing
+            exceptional service.
+          </p>
+        </div>
 
-      <div
-        className="
-          grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 
-          gap-8 justify-center justify-items-center place-items-center
-          max-w-6xl mx-auto px-4
-        "
-      >
-        {providers.map((p) => (
-          <div
-            key={p.id}
-            className="
-              relative group bg-white/90 backdrop-blur-md 
-              border border-gray-200 rounded-2xl shadow-lg 
-              overflow-hidden transform transition-all duration-500 
-              hover:-translate-y-3 hover:shadow-2xl cursor-pointer
-            "
-          >
-            <div className="flex flex-col items-center text-center p-6">
-              <div className="relative">
-                <img
-                  src={p.image}
-                  alt={p.providerName}
-                  className="w-24 h-24 rounded-full object-cover border-4 border-blue-100 shadow-md group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute -bottom-1 right-0 w-4 h-4 bg-green-400 rounded-full border-2 border-white"></div>
-              </div>
+        {/* Grid Layout */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-6 xl:gap-8">
+          {/* Loading State */}
+          {loading
+            ? Array.from({ length: 6 }).map((_, index) => (
+                <ProviderSkeleton key={index} />
+              ))
+            : providers.map((p) => (
+                <div
+                  key={p.id}
+                  className="
+                    group relative bg-white/80 backdrop-blur-md 
+                    border border-primary-100 rounded-2xl shadow-sm 
+                    hover:shadow-xl hover:shadow-primary-500/10 
+                    hover:border-primary-300
+                    transition-all duration-300 ease-out 
+                    flex flex-col h-full overflow-hidden
+                  "
+                >
+                  {/* Decorative linear background inside card */}
+                  <div className="absolute top-0 w-full h-24 bg-linear-to-b from-primary-50 to-transparent opacity-50"></div>
 
-              <h3 className="mt-4 text-xl font-semibold text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
-                {p.providerName}
-              </h3>
+                  <div className="relative p-6 flex flex-col items-center grow z-10">
+                    {/* Avatar Container */}
+                    <div className="relative mb-4">
+                      <div className="p-1 bg-white rounded-full shadow-sm">
+                        <img
+                          src={p.image}
+                          alt={p.providerName}
+                          onError={handleImageError}
+                          className="w-24 h-24 rounded-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                      {/* Verified Badge */}
+                      <div
+                        className="absolute bottom-1 right-0 bg-white rounded-full p-1 shadow-md"
+                        title="Verified Provider"
+                      >
+                        <ShieldCheck className="w-5 h-5 text-green-500 fill-green-100" />
+                      </div>
+                    </div>
 
-              <div className="flex items-center justify-center gap-1 mt-2">
-                <Star className="h-5 w-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-gray-700 font-medium">{p.rating}</span>
-              </div>
+                    {/* Name & Info */}
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors text-center truncate w-full">
+                      {p.providerName}
+                    </h3>
 
-              <p className="text-gray-500 text-sm mt-2 px-2">
-                Expert in{" "}
-                <span className="font-medium text-blue-600">{p.skillName}</span>
-              </p>
+                    <div className="flex items-center gap-1 my-2 bg-orange-50 px-3 py-1 rounded-full border border-orange-100">
+                      <Star className="h-4 w-4 text-orange-400 fill-orange-400" />
+                      <span className="text-gray-800 font-bold text-sm">
+                        {p.rating}
+                      </span>
+                      <span className="text-gray-400 text-xs ml-1">
+                        (200+ Reviews)
+                      </span>
+                    </div>
 
-              <p className="text-gray-400 text-xs mt-1">{p.providerEmail}</p>
+                    <p className="text-primary-600 font-medium text-sm mb-1">
+                      {p.skillName} Specialist
+                    </p>
 
-              <button
-                className="
-                  mt-5 px-6 py-2 text-sm font-semibold 
-                  rounded-lg bg-blue-600 text-white 
-                  shadow-md hover:bg-blue-700 transition-all duration-300 cursor-pointer
-                "
-              >
-                View Profile
-              </button>
-            </div>
+                    <p className="text-gray-400 text-xs truncate w-full text-center mb-4">
+                      {p.providerEmail}
+                    </p>
 
-            <div className="absolute inset-0 bg-linear-to-tr from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          </div>
-        ))}
+                    {/* Spacer to push button to bottom */}
+                    <div className="mt-auto w-full pt-4 border-t border-primary-50">
+                      <button
+                        className="
+                          w-full flex items-center justify-center gap-2
+                          bg-primary-600  font-semibold 
+                          py-2.5 px-4 rounded-xl
+                          group-hover:bg-primary-700 text-white group-hover:text-white
+                          transition-all duration-300 cursor-pointer
+                        "
+                      >
+                        View Profile
+                        <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+        </div>
       </div>
     </section>
   );

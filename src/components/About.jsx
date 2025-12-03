@@ -1,59 +1,136 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { Award, Zap, Users, Sparkles } from "lucide-react";
+
+const features = [
+  {
+    id: 1,
+    title: "Top-Rated Experts",
+    description:
+      "Access a curated network of verified professionals and industry leaders ready to share their expertise.",
+    icon: Award,
+    // Using Orange/Yellow as a complementary accent to the Primary Blue
+    color: "bg-orange-50 text-orange-500",
+  },
+  {
+    id: 2,
+    title: "Seamless Learning",
+    description:
+      "Experience a smooth journey with instant booking, integrated video calls, and real-time feedback loops.",
+    icon: Zap,
+    // Using the Brand Primary Color here
+    color: "bg-primary-50 text-primary-600",
+  },
+  {
+    id: 3,
+    title: "Community Driven",
+    description:
+      "Join a vibrant ecosystem of creators. Swap skills, collaborate on projects, and grow your network.",
+    icon: Users,
+    // Using Teal/Green as a complementary accent
+    color: "bg-teal-50 text-teal-500",
+  },
+];
+
+// Animation Variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, type: "spring" } },
+};
 
 export default function About() {
   return (
-    <section className="relative bg-linear-to-b from-blue-50 via-blue-100 to-blue-200 py-20">
-      {/* Background floating shapes */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+    <section className="relative py-24 overflow-hidden bg-gray-50">
+      {/* Background Elements (Theme Matched) */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-blob"></div>
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 translate-y-1/2 pointer-events-none animate-blob animation-delay-2000"></div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-8 text-center">
-          About Skillswap
-        </h2>
-        <p className="text-center text-gray-700 max-w-3xl mx-auto mb-12">
-          Skillswap is a futuristic platform where learners and skill providers
-          meet. Swap your knowledge, enhance your skills, and discover
-          opportunities like never before. Our mission is to empower creators
-          and learners in a seamless, innovative environment.
-        </p>
-
-        {/* Features cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header Section */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
-            className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:scale-105 transition-transform"
-            whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: -10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-primary-100 shadow-sm text-primary-600 text-sm font-semibold mb-6"
           >
-            <h3 className="text-xl font-semibold mb-2">Top Providers</h3>
-            <p className="text-gray-600">
-              Access top-rated skill providers and learn from the best in the
-              industry.
-            </p>
+            <Sparkles size={16} />
+            <span>Our Mission</span>
           </motion.div>
 
-          <motion.div
-            className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:scale-105 transition-transform"
-            whileHover={{ scale: 1.05 }}
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-4xl md:text-5xl font-extrabold text-primary-900 mb-6 tracking-tight"
           >
-            <h3 className="text-xl font-semibold mb-2">Seamless Learning</h3>
-            <p className="text-gray-600">
-              Enjoy smooth, interactive lessons with real-time updates and
-              flexible slots.
-            </p>
-          </motion.div>
+            Empowering Growth Through <br />
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-primary-600 to-primary-400">
+              Knowledge Exchange
+            </span>
+          </motion.h2>
 
-          <motion.div
-            className="bg-white/70 backdrop-blur-lg rounded-2xl p-6 shadow-xl hover:scale-105 transition-transform"
-            whileHover={{ scale: 1.05 }}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="text-lg text-primary-700/80 leading-relaxed"
           >
-            <h3 className="text-xl font-semibold mb-2">Community Driven</h3>
-            <p className="text-gray-600">
-              Join a vibrant community of learners and creators, exchange
-              skills, and grow together.
-            </p>
-          </motion.div>
+            Skillswap is the futuristic bridge between curiosity and mastery. We
+            don't just offer courses; we create connections. Whether you want to
+            teach or learn, we provide the tools to unlock potential.
+          </motion.p>
         </div>
+
+        {/* Feature Cards Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid md:grid-cols-3 gap-8"
+        >
+          {features.map((feature) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
+                key={feature.id}
+                variants={itemVariants}
+                whileHover={{ y: -10 }}
+                className="
+                  bg-white/80 backdrop-blur-xl border border-primary-100 rounded-3xl p-8 
+                  shadow-lg shadow-primary-900/5 
+                  hover:shadow-xl hover:shadow-primary-500/10 hover:border-primary-300
+                  transition-all duration-300 group cursor-default
+                "
+              >
+                <div
+                  className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-6 ${feature.color} group-hover:scale-110 transition-transform duration-300`}
+                >
+                  <Icon size={32} />
+                </div>
+                <h3 className="text-2xl font-bold text-primary-900 mb-3 group-hover:text-primary-600 transition-colors">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
       </div>
     </section>
   );

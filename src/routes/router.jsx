@@ -12,6 +12,9 @@ import Home from "../pages/home/Home";
 import SkillDetails from "../components/SkillDetails";
 import ForgotPassword from "../pages/ForgotPassword";
 import About from "../components/About";
+import AllSkills from "../pages/allSkill";
+import Contact from "../pages/Contact";
+import Support from "../pages/Support";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +25,9 @@ export const router = createBrowserRouter([
       { path: "signup", Component: Signup },
 
       { path: "about", Component: About },
+      { path: "all-skills", Component: AllSkills },
+      { path: "contact", Component: Contact },
+      { path: "support", Component: Support },
       { path: "*", Component: ErrorPage },
       {
         path: "privetRoute",
@@ -41,11 +47,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "detils/:id",
-        element: (
-          <PrivetRoute>
-            <SkillDetails />
-          </PrivetRoute>
-        ),
+        element: <SkillDetails />,
       },
       { path: "forgot-password/:email", Component: ForgotPassword },
     ],

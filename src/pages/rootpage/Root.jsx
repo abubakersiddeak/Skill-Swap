@@ -5,7 +5,7 @@ import Footer from "../../components/Footer";
 
 export default function Root() {
   return (
-    <div className="bg-linear-to-b from-blue-50 via-blue-100 to-blue-200">
+    <div className="">
       <Navbar />
       <Outlet></Outlet>
       <Footer />
