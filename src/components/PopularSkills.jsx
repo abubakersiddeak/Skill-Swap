@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -60,7 +61,7 @@ export default function PopularSkills() {
             className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 cursor-pointer border border-primary-100 hover:border-primary-300 flex flex-col h-full"
           >
             {/* Image Container - Fixed Height */}
-            <figure className="relative overflow-hidden h-56 bg-primary-50 flex-shrink-0 cursor-pointer">
+            <figure className="relative overflow-hidden h-56 bg-primary-50 shrink-0 cursor-pointer">
               <img
                 src={skill.image}
                 alt={skill.skillName}
@@ -79,7 +80,7 @@ export default function PopularSkills() {
             {/* Card Content - Flex Grow to Fill Space */}
             <div className="p-6 flex flex-col grow">
               {/* Skill Name - Fixed Height with Line Clamp */}
-              <h3 className="text-xl font-bold text-primary-900 mb-3 line-clamp-2 min-h-[3.5rem] group-hover:text-primary-600 transition-colors duration-300 cursor-pointer">
+              <h3 className="text-xl font-bold text-primary-900 mb-3 line-clamp-2 min-h-14 group-hover:text-primary-600 transition-colors duration-300 cursor-pointer">
                 {skill.skillName}
               </h3>
 
@@ -185,6 +186,24 @@ export default function PopularSkills() {
             </div>
           </div>
         ))}
+      </div>
+      <div className="mt-16 text-center">
+        <button
+          onClick={() => navigate("/all-skills")}
+          className="
+            cursor-pointer
+            inline-flex items-center gap-3
+            bg-primary-600 hover:bg-primary-700 
+            text-white text-lg font-bold 
+            py-4 px-10 rounded-xl 
+            shadow-lg shadow-primary-600/30 hover:shadow-primary-600/50 
+            transform hover:-translate-y-1 hover:scale-105
+            transition-all duration-300
+          "
+        >
+          See More Skills
+          <ArrowRight className="w-6 h-6" />
+        </button>
       </div>
 
       {/* Empty State */}
