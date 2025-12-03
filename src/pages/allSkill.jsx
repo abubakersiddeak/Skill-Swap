@@ -84,14 +84,14 @@ export default function AllSkills() {
   };
 
   return (
-    <section className="py-16 bg-gray-50 relative overflow-hidden min-h-screen">
+    <section className="py-10  bg-gray-50 relative overflow-hidden min-h-screen">
       {/* Background Decoration */}
       <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-primary-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-width mx-auto  relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="text-primary-900 text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
             Explore Available Skills
           </h2>
           <p className="text-primary-700 text-lg mb-8">

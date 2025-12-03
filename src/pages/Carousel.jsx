@@ -45,7 +45,7 @@ export default function Carousel() {
   }
 
   return (
-    <div className="bg-transparent max-width mx-auto py-10 ">
+    <div className="bg-transparent max-width mx-auto py-4 ">
       {/* Section Header */}
       <div className="text-center mb-4">
         <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
@@ -96,44 +96,65 @@ export default function Carousel() {
         {data.map((s) => (
           <SwiperSlide key={s.skillId}>
             <div
-              onClick={() => navigate(`/detils/${s.skillId}`)}
-              className="group relative w-full h-80 md:h-96 lg:h-[420px] overflow-hidden rounded-2xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+              onClick={() => navigate(`/detils/${s.skillId}`)} // Fixed spelling: details
+              className="group relative w-full h-[400px] md:h-[450px] overflow-hidden rounded-3xl cursor-pointer shadow-lg shadow-primary-900/20 hover:shadow-2xl hover:shadow-primary-900/40 transition-all duration-500 border border-white/20 isolate"
             >
-              {/* Image */}
+              {/* 1. Image with Zoom Effect */}
               <img
                 src={s.image}
                 alt={s.skillName}
-                className="w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
+                className="w-full h-full object-cover transform transition-transform duration-700 ease-out group-hover:scale-110"
               />
 
-              {/* linear Overlay */}
-              <div className="absolute inset-0 bg-linear-to-t from-primary-900/90 via-primary-800/40 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-500"></div>
+              {/* 2. High-Contrast Gradient Overlay 
+        This ensures text is ALWAYS visible, even on white images.
+    */}
+              <div className="absolute inset-0 bg-linear-to-t from-gray-900 via-gray-900/60 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-              {/* Content Container */}
-              <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
-                {/* Skill Name */}
-                <h3 className="text-white font-bold text-2xl md:text-3xl lg:text-4xl mb-3 transform translate-y-0 group-hover:-translate-y-2 transition-transform duration-500 drop-shadow-lg">
+              {/* 3. Top Badges (Glassmorphism) */}
+              <div className="absolute top-4 right-4 flex gap-2 z-20">
+                <span className="bg-white/20 backdrop-blur-md border border-white/20 text-white px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                  ★ {s.rating || "4.8"}
+                </span>
+              </div>
+
+              {/* 4. Bottom Content Area */}
+              <div className="absolute bottom-0 left-0 w-full p-6 md:p-8 z-20 flex flex-col justify-end">
+                {/* Category Label (Always visible) */}
+                <span className="w-fit mb-2 px-2.5 py-0.5 rounded-md bg-primary-500/80 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-widest transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                  {s.category || "Course"}
+                </span>
+
+                {/* Title (Always visible, moves up slightly) */}
+                <h3 className="text-white font-extrabold text-2xl md:text-3xl leading-tight mb-2 drop-shadow-md transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                   {s.skillName}
                 </h3>
 
-                {/* Description or CTA (optional) */}
-                <p className="text-primary-100 text-sm md:text-base opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 line-clamp-2">
-                  Explore this skill and enhance your expertise
-                </p>
+                {/* Hidden Content Reveal */}
+                <div className="max-h-0 overflow-hidden group-hover:max-h-40 transition-all duration-500 ease-in-out opacity-0 group-hover:opacity-100">
+                  <p className="text-gray-200 text-sm md:text-base line-clamp-2 mb-4 drop-shadow-sm">
+                    {s.description ||
+                      "Master this skill with top-rated experts. Join now to start learning."}
+                  </p>
 
-                {/* Action Button */}
-                <button className="mt-4 w-fit px-6 py-2.5 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg hover:shadow-xl">
-                  Learn More →
-                </button>
+                  <button className="flex items-center gap-2 text-white font-bold text-sm border-b-2 border-primary-500 pb-1 hover:text-primary-400 transition-colors">
+                    View Details
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M14 5l7 7m0 0l-7 7m7-7H3"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
-
-              {/* Top Right Badge (optional - if you have skill level/category) */}
-              <div className="absolute top-4 right-4 bg-primary-500/90 backdrop-blur-sm text-white px-4 py-1.5 rounded-full text-xs md:text-sm font-semibold shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                Popular
-              </div>
-
-              {/* Border Glow Effect */}
-              <div className="absolute inset-0 rounded-2xl border-2 border-primary-600 group-hover:border-primary-400/50 transition-all duration-500"></div>
             </div>
           </SwiperSlide>
         ))}

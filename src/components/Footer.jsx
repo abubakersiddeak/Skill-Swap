@@ -31,30 +31,24 @@ export default function Footer() {
 
         {/* Navigation Links */}
         <nav className="flex flex-wrap justify-center gap-x-8 gap-y-4 mb-10 font-medium text-primary-200">
-          <a
-            href="#"
+          <Link
+            to={"/about"}
             className="hover:text-primary-400 transition-colors duration-300"
           >
             About us
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to={"/contact"}
             className="hover:text-primary-400 transition-colors duration-300"
           >
             Contact
-          </a>
-          <a
-            href="#"
+          </Link>
+          <Link
+            to={"/support"}
             className="hover:text-primary-400 transition-colors duration-300"
           >
-            Privacy Policy
-          </a>
-          <a
-            href="#"
-            className="hover:text-primary-400 transition-colors duration-300"
-          >
-            Terms of Service
-          </a>
+            Support
+          </Link>
         </nav>
 
         {/* Social Media Icons */}

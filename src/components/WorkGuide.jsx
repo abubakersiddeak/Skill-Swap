@@ -28,12 +28,12 @@ const steps = [
 
 export default function WorkGuide() {
   return (
-    <section className="relative py-10 overflow-hidden">
+    <section className="relative py-10 overflow-hidden  max-width">
       {/* Background Blobs (Subtler to match theme) */}
       <div className="absolute top-0 left-0 w-96 h-96 bg-primary-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-40 -translate-x-1/2 -translate-y-1/2"></div>
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-100/50 rounded-full mix-blend-multiply filter blur-3xl opacity-40 translate-x-1/2 translate-y-1/2"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className=" mx-auto w-full   relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-primary-900 mb-4">
@@ -46,11 +46,11 @@ export default function WorkGuide() {
         </div>
 
         {/* Steps Container */}
-        <div className="relative">
+        <div className="relative ">
           {/* Connector Line (Desktop Only) */}
           <div className="hidden md:block absolute top-12 left-0 w-full h-0.5 border-t-2 border-dashed border-primary-200 -z-10" />
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid md:grid-cols-3 gap-8 lg:gap-12  ">
             {steps.map((step, index) => {
               const Icon = step.icon;
               return (

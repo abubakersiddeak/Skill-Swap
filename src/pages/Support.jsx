@@ -57,7 +57,7 @@ export default function Support() {
       {/* Background Decorations */}
       <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="max-width mx-auto  relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-primary-100 shadow-sm text-primary-600 text-sm font-semibold mb-6">

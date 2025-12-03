@@ -55,7 +55,7 @@ export default function About() {
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-blob"></div>
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 translate-y-1/2 pointer-events-none animate-blob animation-delay-2000"></div>
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-width mx-auto  relative z-10">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.div
