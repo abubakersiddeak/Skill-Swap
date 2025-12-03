@@ -29,7 +29,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="relative py-20 bg-gray-50 overflow-hidden">
+    <section className="relative py-10 ">
       {/* Background Decorations (Theme Matched) */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 translate-y-1/2 pointer-events-none"></div>

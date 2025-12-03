@@ -53,7 +53,7 @@ export default function Support() {
   };
 
   return (
-    <section className="relative py-20 bg-gray-50 overflow-hidden min-h-screen">
+    <section className="relative py-10  overflow-hidden min-h-screen">
       {/* Background Decorations */}
       <div className="absolute top-0 left-1/2 w-[800px] h-[800px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
 

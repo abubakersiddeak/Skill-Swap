@@ -1,84 +1,52 @@
-import { useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router";
-import gsap from "gsap";
+import { Home, AlertOctagon } from "lucide-react";
 
 export default function ErrorPage() {
-  const codeRef = useRef(null);
-  const textRef = useRef(null);
-  const btnRef = useRef(null);
-  const orb1Ref = useRef(null);
-  const orb2Ref = useRef(null);
-
-  useEffect(() => {
-    gsap.fromTo(
-      codeRef.current,
-      { opacity: 0, y: -80, rotation: -10 },
-      { opacity: 1, y: 0, rotation: 0, duration: 1, ease: "power4.out" }
-    );
-
-    gsap.fromTo(
-      textRef.current,
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, delay: 0.4, duration: 1, ease: "power3.out" }
-    );
-
-    gsap.fromTo(
-      btnRef.current,
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, delay: 0.7, duration: 0.8, ease: "back.out(1.7)" }
-    );
-
-    gsap.to(orb1Ref.current, {
-      y: -20,
-      x: 15,
-      repeat: -1,
-      yoyo: true,
-      duration: 6,
-      ease: "sine.inOut",
-    });
-    gsap.to(orb2Ref.current, {
-      y: 15,
-      x: -20,
-      repeat: -1,
-      yoyo: true,
-      duration: 8,
-      ease: "sine.inOut",
-    });
-  }, []);
-
   return (
-    <div className="relative flex flex-col items-center justify-center h-screen bg-white text-gray-900 overflow-hidden px-4">
-      <div
-        ref={orb1Ref}
-        className="absolute w-72 h-72 bg-blue-200 rounded-full blur-3xl top-20 left-10 opacity-40"
-      />
-      <div
-        ref={orb2Ref}
-        className="absolute w-60 h-60 bg-pink-200 rounded-full blur-3xl bottom-20 right-10 opacity-30"
-      />
+    <section className="relative flex flex-col items-center justify-center min-h-screen bg-gray-50 text-gray-900 overflow-hidden px-4">
+      {/* Background Blobs (Using standard Tailwind animate-pulse for movement) */}
+      <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-primary-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 pointer-events-none animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-primary-200/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/2 translate-y-1/2 pointer-events-none animate-pulse delay-1000"></div>
 
-      <h1
-        ref={codeRef}
-        className="text-[10rem] md:text-[12rem] font-extrabold text-gray-900 drop-shadow-md"
-      >
+      {/* Icon Decoration */}
+      <div className="mb-6 text-primary-200 animate-bounce">
+        <AlertOctagon size={80} />
+      </div>
+
+      {/* 404 Number */}
+      <h1 className="text-[9rem] md:text-[13rem] leading-none font-extrabold text-transparent bg-clip-text bg-linear-to-b from-primary-400 to-primary-900 drop-shadow-sm select-none hover:scale-105 transition-transform duration-500 cursor-default">
         404
       </h1>
 
-      <p
-        ref={textRef}
-        className="text-lg md:text-2xl text-gray-600 mt-4 mb-8 text-center max-w-lg"
-      >
-        Oops! The page you are looking for doesn’t exist. It might have been
-        moved or deleted.
+      {/* Main Heading */}
+      <h2 className="text-3xl md:text-5xl font-bold text-primary-900 mt-2 mb-4 tracking-tight text-center">
+        Page Not Found
+      </h2>
+
+      {/* Description */}
+      <p className="text-lg md:text-xl text-primary-600/80 text-center max-w-lg mb-10 leading-relaxed">
+        Oops! The page you are looking for might have been removed, had its name
+        changed, or is temporarily unavailable.
       </p>
 
+      {/* Home Button */}
       <Link
-        ref={btnRef}
         to="/"
-        className="px-8 py-3 text-lg font-medium bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition transform hover:scale-105"
+        className="
+          cursor-pointer
+          inline-flex items-center gap-2
+          px-8 py-4 
+          text-lg font-bold text-white 
+          bg-primary-600 hover:bg-primary-700 
+          rounded-full shadow-lg shadow-primary-600/30 hover:shadow-primary-600/50 
+          transform hover:-translate-y-1 hover:scale-105 
+          transition-all duration-300
+        "
       >
+        <Home size={20} />
         Go Back Home
       </Link>
-    </div>
+    </section>
   );
 }

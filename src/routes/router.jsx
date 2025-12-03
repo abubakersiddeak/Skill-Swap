@@ -8,7 +8,6 @@ import Signup from "../pages/Signup";
 import PrivetRoute from "../pages/privetPage/PrivetRoute";
 import Profile from "../pages/Profile";
 import Main from "../pages/Main";
-import Home from "../pages/home/Home";
 import SkillDetails from "../components/SkillDetails";
 import ForgotPassword from "../pages/ForgotPassword";
 import About from "../components/About";
@@ -29,14 +28,6 @@ export const router = createBrowserRouter([
       { path: "contact", Component: Contact },
       { path: "support", Component: Support },
       { path: "*", Component: ErrorPage },
-      {
-        path: "privetRoute",
-        element: (
-          <PrivetRoute>
-            <Home />
-          </PrivetRoute>
-        ),
-      },
       {
         path: "profile",
         element: (
